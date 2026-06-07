@@ -1,14 +1,19 @@
 /* SavingsBanner component styling per DOC 3.12 §3.2 */
 
 .ag-savings-banner {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: var(--space-4);
   padding: var(--space-4) var(--space-6);
   border-radius: var(--radius-lg);
   width: 100%;
-  border: 1px solid color-mix(in srgb, var(--color-positive) 35%, transparent);
-  background: linear-gradient(120deg, color-mix(in srgb, var(--color-positive) 14%, var(--color-bg-primary)) 0%, color-mix(in srgb, var(--color-positive) 4%, var(--color-bg-primary)) 100%);
+  border: 1px solid color-mix(in srgb, var(--color-positive) 20%, var(--color-border));
+  background: linear-gradient(135deg, color-mix(in srgb, var(--color-positive) 12%, var(--color-bg-elevated)) 0%, color-mix(in srgb, var(--color-positive) 3%, var(--color-bg-elevated)) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px -2px color-mix(in srgb, var(--color-positive) 8%, transparent);
+  box-sizing: border-box;
 }
 
 .ag-savings-banner__flag {
@@ -19,7 +24,6 @@
 }
 
 .ag-savings-banner__content {
-  flex: 1;
   min-width: 0;
 }
 
@@ -35,12 +39,11 @@
 .ag-savings-banner__title {
   font-family: var(--font-family-heading);
   font-weight: var(--font-weight-semibold);
-  font-size: var(--text-base);
+  font-size: clamp(var(--text-sm), 1.2vw + 0.8rem, var(--text-base));
   color: var(--color-text-primary);
   margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  line-height: var(--line-height-tight);
 }
 
 .ag-savings-banner__amount {
@@ -58,6 +61,7 @@
 .ag-savings-banner__btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: var(--space-2);
   padding: var(--space-2) var(--space-4);
   background-color: var(--color-positive);
@@ -68,31 +72,25 @@
   border-radius: var(--radius-md);
   cursor: pointer;
   box-shadow: var(--shadow-sm);
-  transition: background-color var(--transition-fast);
+  transition: background-color var(--transition-fast), box-shadow var(--transition-fast);
   white-space: nowrap;
 }
 
 .ag-savings-banner__btn:hover {
   background-color: var(--color-link-hover);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--color-positive) 25%, transparent);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 575px) {
   .ag-savings-banner {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    grid-template-columns: auto 1fr;
     gap: var(--space-3);
     padding: var(--space-4);
   }
 
-  .ag-savings-banner__title {
-    white-space: normal;
-    overflow: visible;
-    text-overflow: clip;
-  }
-
   .ag-savings-banner__btn {
+    grid-column: 1 / span 2;
     width: 100%;
-    justify-content: center;
+    margin-top: var(--space-1);
   }
 }

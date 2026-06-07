@@ -50,6 +50,20 @@
   color: var(--color-text-primary);
 }
 
+.ag-price-card .ag-btn--secondary,
+.ag-retailers-row .ag-btn--secondary {
+  background-color: var(--color-bg-elevated);
+  color: var(--color-positive);
+  border-color: var(--color-positive);
+}
+
+.ag-price-card .ag-btn--secondary:hover,
+.ag-retailers-row .ag-btn--secondary:hover {
+  background-color: var(--color-positive-light);
+  border-color: var(--color-positive);
+  color: var(--color-positive);
+}
+
 .ag-btn:disabled {
   background-color: var(--color-bg-secondary);
   color: var(--color-text-disabled);
