@@ -1,0 +1,179 @@
+/**
+ * GapLuck - Centralized Price History Chart Styles
+ * Mapped strictly to design tokens, BEM-compliant, supporting LTR/RTL and dark/light themes.
+ */
+
+.ag-chart-card {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+}
+
+.ag-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-5);
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.ag-chart-legends {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.ag-chart-legend {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.ag-chart-legend__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.ag-chart-controls {
+  display: flex;
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 2px;
+}
+
+.ag-chart-btn {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  padding: var(--space-1-5) var(--space-4);
+  font-size: var(--text-2xs);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.ag-chart-btn--active {
+  background: var(--color-positive);
+  color: var(--color-white);
+}
+
+.ag-chart-svg-container {
+  width: 100%;
+  height: 250px;
+  position: relative;
+}
+
+.ag-chart-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.ag-chart-grid-line {
+  stroke: var(--color-border);
+  stroke-width: 1;
+  stroke-dasharray: 4, 4;
+}
+
+.ag-chart-axis-label {
+  fill: var(--color-text-secondary);
+  font-size: 10px;
+  font-family: var(--font-family-base);
+}
+
+.ag-chart-line {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: d var(--transition-slow);
+}
+
+.ag-chart-area {
+  fill-opacity: 0.04;
+  transition: d var(--transition-slow);
+}
+
+.ag-chart-tracker-line {
+  stroke: var(--color-border-strong);
+  stroke-width: 1.5;
+  display: none;
+  pointer-events: none;
+}
+
+.ag-chart-interactive-dot {
+  r: 5;
+  stroke-width: 2.5;
+  fill: var(--color-bg-primary);
+  display: none;
+  pointer-events: none;
+}
+
+.ag-chart-tooltip {
+  position: absolute;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  font-size: var(--text-xs);
+  box-shadow: var(--shadow-lg);
+  pointer-events: none;
+  display: none;
+  z-index: var(--z-dropdown);
+}
+
+.ag-chart-tooltip__row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-top: var(--space-1);
+}
+
+.ag-chart-dropdown-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.ag-chart-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  inset-inline-end: 0;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  display: none;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 160px;
+  box-shadow: var(--shadow-lg);
+  z-index: var(--z-dropdown);
+}
+
+.ag-chart-dropdown-menu--open {
+  display: flex;
+}
+
+.ag-chart-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2-5);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  color: var(--color-text-primary);
+  user-select: none;
+}
+
+.ag-chart-dropdown-item input {
+  cursor: pointer;
+  accent-color: var(--color-positive);
+}

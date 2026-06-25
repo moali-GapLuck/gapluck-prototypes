@@ -1,0 +1,80 @@
+﻿Created At: 2026-06-23T19:57:28Z
+Completed At: 2026-06-23T19:57:28Z
+File Path: `file:///f:/2026/comparison%20project/Antigravity%20-%20comparison/gapluck-prototypes/pages/comparison_V3.html`
+Total Lines: 4149
+Total Bytes: 178105
+Showing lines 3430 to 3500
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+3430:         return;
+3431:       }
+3432: 
+3433:       const mainList = document.querySelector(".ag-comparison-layout__main .ag-section--worldwide .ag-price-card-list");
+3434:       const sideBody = document.querySelector(".ag-comparison-layout__side-body");
+3435:       if (!mainList || !sideBody) return;
+3436: 
+3437:       sideBody.style.minHeight = `${mainList.offsetHeight}px`;
+3438:     }
+3439: 
+3440:     // Dynamic Render Controller using unified deal-row component
+3441:     function renderAllDeals() {
+3442:       const activeStorage = document.querySelector('.ag-variant-chip[data-variant-type="storage"].ag-variant-chip--active')?.getAttribute('data-variant-value') || "256GB";
+3443:       const db = window.GapLuckRetailersDB;
+3444:       if (!db) return;
+3445: 
+3446:       const variantPrices = db.variantPrices[activeStorage];
+3447:       const countryMeta = db.countryMeta;
+3448:       const retailersMeta = db.retailersMeta;
+3449: 
+3450:       // â”€â”€ 1. RENDER LOCAL RETAILERS LIST â”€â”€
+3451:       const localListContainer = document.getElementById("local-retailer-list");
+3452:       if (localListContainer) {
+3453:         localListContainer.innerHTML = "";
+3454: 
+3455:         const localDeals = [];
+3456:         for (const retailerKey in retailersMeta) {
+3457:           if (retailerKey.startsWith(currentRegion + "_")) {
+3458:             const price = variantPrices[retailerKey];
+3459:             if (price !== undefined) {
+3460:               const meta = retailersMeta[retailerKey];
+3461:               localDeals.push({
+3462:                 countryId: currentRegion,
+3463:                 retailerId: retailerKey,
+3464:                 retailerMeta: meta,
+3465:                 priceTRY: price,
+3466:                 currency: countryMeta[currentRegion].currency,
+3467:                 inStock: meta.stock !== "out-of-stock",
+3468:                 tier: meta.tier || 3
+3469:               });
+3470:             }
+3471:           }
+3472:         }
+3473: 
+3474:         // Sort local deals: in-stock first, then price, then tier
+3475:         localDeals.sort((a, b) => {
+3476:           if (a.inStock !== b.inStock) return a.inStock ? -1 : 1;
+3477:           if (a.priceTRY !== b.priceTRY) return a.priceTRY - b.priceTRY;
+3478:           return a.tier - b.tier;
+3479:         });
+3480: 
+3481:         // Mark the winner (cheapest in-stock, or cheapest overall if all out of stock)
+3482:         if (localDeals.length > 0) {
+3483:           const winner = localDeals[0];
+3484:           winner.isWinner = true;
+3485:           localBestPriceTRY = winner.priceTRY;
+3486: 
+3487:           // Update mobile compare toggle price display
+3488:           const togglePriceEl = document.getElementById("compare-toggle-price");
+3489:           if (togglePriceEl) {
+3490:             togglePriceEl.textContent = formatMoney(localBestPriceTRY, currentCurrency);
+3491:           }
+3492:         }
+3493: 
+3494:         // Render local cards
+3495:         localDeals.forEach(deal => {
+3496:           window.GapLuckDealRow.render(deal, localListContainer, "local-card");
+3497:         });
+3498:       }
+3499: 
+3500:       // â”€â”€ 2. RENDER WORLDWIDE COUNTRIES LIST â”€â”€
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+

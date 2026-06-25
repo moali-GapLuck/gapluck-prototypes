@@ -1,0 +1,80 @@
+/* ==========================================================================
+   GapLuck - Social Sign-In Buttons Component CSS
+   Strict BEM, CSS Logical Properties, Token variables, No em-dashes
+   ========================================================================== */
+
+.ag-social-auth {
+  display: flex;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+/* Modifiers for different layout styles */
+.ag-social-auth--row {
+  flex-direction: row;
+}
+
+.ag-social-auth--column {
+  flex-direction: column;
+}
+
+.ag-social-auth__btn {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+  min-height: 44px; /* WCAG touch target */
+  flex: 1 1 0%;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-base);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+}
+
+.ag-social-auth__btn:hover {
+  background-color: var(--color-border);
+  border-color: var(--color-border-strong);
+}
+
+.ag-social-auth__btn:active {
+  transform: scale(0.98);
+}
+
+.ag-social-auth__icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+/* Theme aware Apple Icon display rules */
+.ag-social-auth__icon--apple-dark {
+  display: none;
+}
+
+html[data-theme="dark"] .ag-social-auth__icon--apple-light {
+  display: none;
+}
+
+html[data-theme="dark"] .ag-social-auth__icon--apple-dark {
+  display: block;
+}
+
+/* Full width labels helper class */
+.ag-social-auth__label {
+  white-space: nowrap;
+}
+
+/* Responsive collapse on mobile */
+@media (max-width: 576px) {
+  .ag-social-auth--responsive-row {
+    flex-direction: column;
+  }
+}

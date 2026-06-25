@@ -10,13 +10,143 @@
   <link rel="stylesheet" href="../styles/base.css">
   <link rel="stylesheet" href="../styles/layout.css">
   <link rel="stylesheet" href="../styles/utilities.css">
+  <link rel="stylesheet" href="../styles/components/buttons.css">
+  <link rel="stylesheet" href="../styles/components/forms.css">
+  <link rel="stylesheet" href="../styles/components/social-auth.css">
+  <link rel="stylesheet" href="../styles/components/toast.css">
+  <style>
+    .ag-auth-layout {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: calc(100vh - 120px);
+      padding: var(--space-6);
+    }
+
+    .ag-auth-card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+      box-shadow: var(--shadow-lg);
+      text-align: start;
+    }
+
+    .ag-auth-card__logo {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: var(--text-2xl);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-6);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .ag-auth-card__logo-highlight {
+      color: var(--color-primary);
+    }
+
+    .ag-auth-card__title {
+      font-family: var(--font-heading);
+      font-size: var(--text-lg);
+      font-weight: var(--font-weight-bold);
+      margin-bottom: var(--space-2);
+      color: var(--color-text-primary);
+    }
+
+    .ag-auth-card__subtitle {
+      font-size: var(--text-xs);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-6);
+      line-height: var(--line-height-normal);
+    }
+
+    .ag-auth-card__form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+
+    .ag-auth-card__divider {
+      position: relative;
+      text-align: center;
+      margin-block: var(--space-4);
+    }
+
+    .ag-auth-card__divider::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      inset-inline-start: 0;
+      width: 100%;
+      height: 1px;
+      background-color: var(--color-border);
+      z-index: 1;
+    }
+
+    .ag-auth-card__divider-text {
+      position: relative;
+      background: var(--color-bg-elevated);
+      padding-inline: var(--space-3);
+      font-size: var(--text-2xs);
+      color: var(--color-text-secondary);
+      z-index: 2;
+    }
+  </style>
 </head>
 <body>
   <div class="ag-container ag-p-6">
     <a href="../index.html">← Back to Hub</a>
-    <h1 class="ag-visually-hidden">Authentication Wireframe</h1>
-    <h2>Login / Sign Up (Placeholder)</h2>
-    <p>This wireframe will contain standard auth inputs and social login options.</p>
   </div>
+  
+  <div class="ag-auth-layout">
+    <div class="ag-auth-card">
+      <div class="ag-auth-card__logo">
+        <span>Gap<span class="ag-auth-card__logo-highlight">Luck</span></span>
+      </div>
+      <h2 class="ag-auth-card__title">Welcome to GapLuck</h2>
+      <p class="ag-auth-card__subtitle">Enter your email or use a social network to access price intelligence and traveler matches.</p>
+      
+      <form class="ag-auth-card__form" id="auth-email-form">
+        <div class="ag-form-group">
+          <label class="ag-form-label" for="auth-email">Email</label>
+          <input class="ag-form-input" id="auth-email" type="email" placeholder="Enter your email address" required />
+        </div>
+        <button type="submit" class="ag-btn ag-btn--primary" style="width:100%; justify-content:center;">Continue</button>
+      </form>
+      
+      <div class="ag-auth-card__divider">
+        <span class="ag-auth-card__divider-text">or</span>
+      </div>
+      
+      <!-- Container for social-auth.js -->
+      <div id="auth-social-container" data-social-auth-container data-social-layout="column" data-social-show-text="true" data-social-responsive="false">
+      </div>
+    </div>
+  </div>
+
+  <script src="../scripts/components/toast.js"></script>
+  <script src="../scripts/components/social-auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('auth-email-form');
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const email = document.getElementById('auth-email').value;
+          const msg = `Login successful! Welcome: ${email}`;
+          if (window.GapLuckToast) {
+            window.GapLuckToast.show(msg);
+          } else {
+            alert(msg);
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>

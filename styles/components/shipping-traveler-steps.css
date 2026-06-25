@@ -1,0 +1,285 @@
+/* ==========================================================================
+   GapLuck - Shipping & Traveler Steps Component CSS
+   Strict BEM, CSS Logical Properties, Token variables, No em-dashes
+   Premium, High-Density, Ultra-Compact, and Viewport-Optimized Redesign
+   Specificity-boosted rules to cleanly override page-level legacy styles
+   ========================================================================== */
+
+/* Main Container Sizing */
+.ag-timeline-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  width: 100%;
+  max-width: 800px; /* Narrowed to prevent stretching and fit perfectly on laptop viewports */
+  margin-inline: auto;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .ag-timeline-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+}
+
+/* High-Specificity Column Overrides */
+.ag-timeline-container .ag-timeline-column {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius-lg);
+  background: rgba(18, 22, 28, 0.45) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid var(--color-border) !important;
+  box-shadow: none !important;
+  inset-inline-start: 0 !important;
+  inset-inline-end: 0 !important;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+html[data-theme="light"] .ag-timeline-container .ag-timeline-column {
+  background: rgba(255, 255, 255, 0.6) !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+.ag-timeline-container .ag-timeline-column--traveler {
+  border-color: rgba(45, 191, 142, 0.15) !important;
+}
+
+.ag-timeline-container .ag-timeline-column--traveler:hover {
+  border-color: rgba(45, 191, 142, 0.3) !important;
+  box-shadow: 0 4px 20px rgba(45, 191, 142, 0.04) !important;
+}
+
+.ag-timeline-container .ag-timeline-column--courier {
+  border-color: rgba(99, 102, 241, 0.15) !important;
+}
+
+.ag-timeline-container .ag-timeline-column--courier:hover {
+  border-color: rgba(99, 102, 241, 0.3) !important;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.04) !important;
+}
+
+/* Compact Column Header */
+.ag-timeline-container .ag-timeline-column-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-family-heading) !important;
+  font-size: 13px !important;
+  font-weight: var(--font-weight-bold) !important;
+  border-bottom: 1px solid var(--color-border) !important;
+  padding-bottom: 8px !important;
+  margin: 0 !important;
+}
+
+html[data-theme="light"] .ag-timeline-container .ag-timeline-column-header {
+  border-bottom-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+.ag-timeline-container .ag-timeline-column--traveler .ag-timeline-column-header {
+  color: var(--color-positive) !important;
+}
+
+.ag-timeline-container .ag-timeline-column--courier .ag-timeline-column-header {
+  color: var(--color-card-border-indigo) !important;
+}
+
+.ag-timeline-container .ag-timeline-column-header-icon-wrapper {
+  width: 22px !important;
+  height: 22px !important;
+  border-radius: var(--radius-sm) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  position: static !important;
+}
+
+.ag-timeline-container .ag-timeline-column-header-icon-wrapper svg {
+  width: 11px !important;
+  height: 11px !important;
+}
+
+.ag-timeline-container .ag-timeline-column-header-icon-wrapper--traveler {
+  background-color: var(--color-positive-light) !important;
+  color: var(--color-positive) !important;
+}
+
+.ag-timeline-container .ag-timeline-column-header-icon-wrapper--courier {
+  background-color: rgba(99, 102, 241, 0.06) !important;
+  color: var(--color-card-border-indigo) !important;
+}
+
+/* Steps List Container */
+.ag-timeline-container .ag-timeline-steps {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  list-style: none !important;
+}
+
+/* Connective Vertical Line */
+.ag-timeline-container .ag-timeline-steps::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 4px !important;
+  bottom: 4px !important;
+  inset-inline-start: 9px !important; /* Centered relative to the 18px badge */
+  width: 1px !important;
+  background-color: var(--color-border) !important;
+  display: block !important;
+}
+
+html[data-theme="light"] .ag-timeline-container .ag-timeline-steps::before {
+  background-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Individual Step Item */
+.ag-timeline-container .ag-timeline-step-item {
+  position: relative !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  padding: 4px 6px 4px 28px !important;
+  margin: 0 !important;
+  border-radius: var(--radius-md) !important;
+  transition: background-color var(--transition-fast) !important;
+  min-height: auto !important;
+}
+
+.ag-timeline-container .ag-timeline-step-item:hover {
+  background-color: rgba(255, 255, 255, 0.02) !important;
+}
+
+html[data-theme="light"] .ag-timeline-container .ag-timeline-step-item:hover {
+  background-color: rgba(0, 0, 0, 0.015) !important;
+}
+
+/* Miniature Step Badge */
+.ag-timeline-container .ag-timeline-step-badge {
+  position: absolute !important;
+  inset-inline-start: 0 !important;
+  top: 4px !important; /* Vertically aligned to top text row */
+  width: 18px !important;
+  height: 18px !important;
+  border-radius: var(--radius-full) !important;
+  background-color: var(--color-bg-primary) !important;
+  border: 1.5px solid var(--color-border-strong) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-family: var(--font-family-heading) !important;
+  font-weight: var(--font-weight-bold) !important;
+  font-size: 9px !important;
+  color: var(--color-text-secondary) !important;
+  z-index: 2 !important;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast) !important;
+}
+
+html[data-theme="light"] .ag-timeline-container .ag-timeline-step-badge {
+  background-color: var(--color-bg-primary) !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+.ag-timeline-container .ag-timeline-column--traveler .ag-timeline-step-badge {
+  border-color: rgba(45, 191, 142, 0.25) !important;
+}
+
+.ag-timeline-container .ag-timeline-column--courier .ag-timeline-step-badge {
+  border-color: rgba(99, 102, 241, 0.25) !important;
+}
+
+.ag-timeline-container .ag-timeline-column--traveler .ag-timeline-step-item:hover .ag-timeline-step-badge {
+  background-color: var(--color-positive) !important;
+  border-color: var(--color-positive) !important;
+  color: #ffffff !important;
+  transform: scale(1.05) !important;
+}
+
+.ag-timeline-container .ag-timeline-column--courier .ag-timeline-step-item:hover .ag-timeline-step-badge {
+  background-color: var(--color-card-border-indigo) !important;
+  border-color: var(--color-card-border-indigo) !important;
+  color: #ffffff !important;
+  transform: scale(1.05) !important;
+}
+
+/* Borderless Card Overrides */
+.ag-timeline-container .ag-timeline-step-card {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+  text-align: start !important;
+  display: block !important;
+  transform: none !important;
+}
+
+/* Step Title */
+.ag-timeline-container .ag-timeline-step-title {
+  font-family: var(--font-family-heading) !important;
+  font-size: 11.5px !important;
+  font-weight: var(--font-weight-bold) !important;
+  color: var(--color-text-primary) !important;
+  margin-bottom: 1px !important;
+  margin-top: 0 !important;
+  line-height: 1.2 !important;
+  transition: color var(--transition-fast) !important;
+}
+
+.ag-timeline-container .ag-timeline-column--traveler .ag-timeline-step-item:hover .ag-timeline-step-title {
+  color: var(--color-positive) !important;
+}
+
+.ag-timeline-container .ag-timeline-column--courier .ag-timeline-step-item:hover .ag-timeline-step-title {
+  color: var(--color-card-border-indigo) !important;
+}
+
+/* Step Description */
+.ag-timeline-container .ag-timeline-step-desc {
+  font-size: 10.5px !important;
+  color: var(--color-text-secondary) !important;
+  line-height: 1.3 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Benefit Badges */
+.ag-timeline-container .ag-timeline-step-benefit-badge {
+  display: inline-block !important;
+  font-size: 8px !important;
+  font-weight: var(--font-weight-bold) !important;
+  padding: 1px 4px !important;
+  border-radius: var(--radius-sm) !important;
+  margin-top: 2px !important;
+  line-height: 1 !important;
+}
+
+.ag-timeline-container .ag-timeline-column--traveler .ag-timeline-step-benefit-badge {
+  color: var(--color-positive) !important;
+  background-color: var(--color-positive-light) !important;
+  border: 1px solid rgba(45, 191, 142, 0.12) !important;
+}
+
+.ag-timeline-container .ag-timeline-column--courier .ag-timeline-step-benefit-badge {
+  color: var(--color-card-border-indigo) !important;
+  background-color: rgba(99, 102, 241, 0.06) !important;
+  border: 1px solid rgba(99, 102, 241, 0.12) !important;
+}

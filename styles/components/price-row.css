@@ -118,16 +118,6 @@
   display: none;
 }
 
-.ag-price-card__toggle-desktop {
-  display: none;
-}
-
-@media (min-width: 768px) {
-  .ag-price-card__toggle-desktop {
-    display: inline-flex;
-  }
-}
-
 .ag-price-card__footer {
   display: flex;
   align-items: center;
@@ -184,53 +174,6 @@
   margin-inline-start: auto;
 }
 
-/* Sub-retailers list styling with grid height transition */
-.ag-retailers-drawer {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  background-color: var(--color-bg-secondary);
-  position: relative;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.ag-retailers-drawer--open {
-  grid-template-rows: 1fr;
-  pointer-events: auto;
-  overflow: visible;
-}
-
-.ag-retailers-drawer--open .ag-retailers-drawer__inner {
-  overflow: visible;
-}
-
-.ag-retailers-drawer::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, transparent 0%, var(--color-bg-secondary) 80%);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  pointer-events: none;
-  opacity: 1;
-  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 1;
-}
-
-.ag-retailers-drawer--open::after {
-  opacity: 0;
-}
-
-.ag-retailers-drawer__inner {
-  min-height: 0;
-  overflow: hidden;
-  padding: 0 var(--space-3) var(--space-1-5) var(--space-3);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1-5);
-}
-
 .ag-retailer-row-container {
   display: flex;
   flex-direction: column;
@@ -239,8 +182,11 @@
 .ag-retailers-row {
   display: grid;
   grid-template-columns: 1fr auto auto;
+  grid-template-rows: auto auto;
   align-items: center;
-  gap: var(--space-2-5);
+  align-content: center;
+  column-gap: var(--space-2-5);
+  row-gap: 2px;
   padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-md);
   background-color: var(--color-bg-elevated);
@@ -248,12 +194,31 @@
 }
 
 .ag-retailers-row__actions {
-  grid-column: auto;
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: flex-end;
-  gap: var(--space-1);
-  width: auto;
+  display: contents;
+}
+
+.ag-retailers-row > div:first-child {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+.ag-retailers-row .ag-price-card__price-wrapper {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+}
+
+.ag-retailers-row .ag-btn:not(.ag-price-card__btn-toggle) {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+}
+
+.ag-retailers-row .ag-price-card__btn-toggle {
+  grid-column: 2 / span 2;
+  grid-row: 2;
+  justify-self: end;
+  margin-top: 0;
 }
 
 .ag-retailers-row--muted .ag-price-card__name {
@@ -494,15 +459,15 @@
     grid-template-columns: 1fr auto auto;
     row-gap: 0;
   }
-  
+
   .ag-price-card--retailer .ag-price-card__info-group {
     grid-column: 1;
   }
-  
+
   .ag-price-card--retailer .ag-price-card__price-wrapper {
     grid-column: 2;
   }
-  
+
   .ag-price-card--retailer .ag-price-card__btn-action {
     grid-column: 3;
     width: auto;
@@ -514,31 +479,7 @@
   margin-inline-start: 0;
 }
 
-/* Mobile-only toggle buttons */
-.ag-price-card__toggle-mobile {
-  display: inline-flex;
-}
-
-@media (min-width: 768px) {
-  .ag-price-card__toggle-mobile {
-    display: none;
-  }
-}
-
-/* Three-column centered layout for summary headers */
-.ag-price-card__header--summary {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  padding: var(--space-4) var(--space-5);
-  gap: var(--space-4);
-}
-
-.ag-price-card__header--summary .ag-price-card__btn-toggle {
-  justify-self: center;
-}
-
-/* Best deal visible row — same container style as retailers drawer */
+/* Best deal visible row - same container style as retailers drawer */
 .ag-price-card__best-deal {
   border-top: none;
   background-color: var(--color-bg-secondary);
@@ -548,33 +489,11 @@
   gap: var(--space-1-5);
 }
 
-.ag-price-card__toggle-container {
-  display: flex;
-  justify-content: center;
-  padding: 0 var(--space-3) var(--space-1-5) var(--space-3);
-  background-color: var(--color-bg-secondary);
-  border-bottom-left-radius: calc(var(--radius-lg) - 1px);
-  border-bottom-right-radius: calc(var(--radius-lg) - 1px);
+/* Worldwide panel flat card decomposition - mirrors local region side panel */
+.ag-section--worldwide > .ag-price-card-list {
+  gap: var(--space-6);
 }
 
-/* Always-open retailers drawer styles (no toggle/accordion behaviour) */
-.ag-retailers-drawer--no-toggle {
-  grid-template-rows: 1fr;
-  pointer-events: auto;
-  border-bottom-left-radius: calc(var(--radius-lg) - 1px);
-  border-bottom-right-radius: calc(var(--radius-lg) - 1px);
-  overflow: visible;
-}
-
-.ag-retailers-drawer--no-toggle .ag-retailers-drawer__inner {
-  overflow: visible;
-}
-
-.ag-retailers-drawer--no-toggle::after {
-  display: none;
-}
-
-/* Worldwide panel flat card decomposition — mirrors local region side panel */
 .ag-section--worldwide > .ag-price-card-list > .ag-price-card {
   background-color: transparent;
   border: none;
@@ -588,15 +507,12 @@
 
 .ag-section--worldwide > .ag-price-card-list > .ag-price-card > .ag-price-card__header {
   background-color: var(--color-bg-elevated);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border) !important;
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
+  box-shadow: none !important;
   position: sticky;
   top: calc(var(--header-height) + var(--section-header-height));
   z-index: 9;
-  border-bottom: none;
-  border-bottom-left-radius: calc(var(--radius-lg) - 1px);
-  border-bottom-right-radius: calc(var(--radius-lg) - 1px);
   min-height: 40px;
   padding: var(--space-2) var(--space-3);
   box-sizing: border-box;
@@ -610,28 +526,6 @@
   gap: var(--space-2);
 }
 
-.ag-section--worldwide > .ag-price-card-list > .ag-price-card .ag-retailers-drawer {
-  background-color: transparent;
-  grid-template-rows: 1fr;
-  pointer-events: auto;
-  overflow: visible;
-}
-
-.ag-section--worldwide > .ag-price-card-list > .ag-price-card .ag-retailers-drawer__inner {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  padding: 0;
-}
-
-.ag-section--worldwide > .ag-price-card-list > .ag-price-card .ag-retailers-drawer::after {
-  display: none;
-}
-
-.ag-section--worldwide > .ag-price-card-list > .ag-price-card .ag-price-card__toggle-container {
-  display: none;
-}
-
 .ag-section--worldwide > .ag-price-card-list > .ag-price-card .ag-retailers-row {
   background-color: var(--color-bg-elevated);
   border: 1px solid var(--color-border);
@@ -639,9 +533,25 @@
   box-shadow: var(--shadow-sm);
   min-height: 72px;
   padding: var(--space-2) var(--space-2-5);
-  gap: var(--space-2-5);
+  column-gap: var(--space-2-5);
+  row-gap: 2px;
+  align-content: center;
   box-sizing: border-box;
   align-items: center;
+}
+
+.ag-section--worldwide > .ag-price-card-list > .ag-price-card .ag-landed-drawer__inner {
+  border: 1px solid var(--color-border);
+}
+
+/* Side Comparison Panel border styling - light grey border */
+.ag-comparison-layout__side .ag-price-card {
+  border: 1px solid var(--color-border);
+}
+
+.ag-comparison-layout__side .ag-price-card__header {
+  border: none;
+  background-color: transparent;
 }
 
 /* Comparison side panel: lock retailer card height to worldwide row rhythm on all viewports */
@@ -652,4 +562,45 @@
 .ag-comparison-layout .ag-price-card--region {
   min-height: 0;
 }
+
+/* Watchlist Price Alert Popover */
+.ag-watchlist-container {
+  position: relative;
+  width: 100%;
+}
+
+
+
+/* Landed Cost Card Buttons */
+.ag-landed-card__btn {
+  margin-top: var(--space-3);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Region selector dropdown inside country section header */
+.ag-price-card__select {
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-base);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-semibold);
+  height: 28px;
+  padding-inline: var(--space-2);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  outline: none;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.ag-price-card__select:hover {
+  background-color: var(--color-bg-elevated);
+  border-color: var(--color-border-strong);
+}
+
+.ag-price-card__select:focus {
+  border-color: var(--color-positive);
+}
+
 

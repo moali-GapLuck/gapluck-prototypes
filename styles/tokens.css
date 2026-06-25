@@ -39,6 +39,10 @@
   --color-info:           #105E9B;  /* blue for authorized retailers, info states */
   --color-info-light:     #EBF5FC;  /* light blue background */
 
+  /* Card Border Colors */
+  --color-card-border-indigo:   #3F51B5;
+  --color-card-border-grey:     #CCCCCC;
+
   /* Background */
   --color-bg-primary:     #FFFFFF;  /* main page background */
   --color-bg-secondary:   #F5F4F0;  /* card backgrounds, table row alternates, input fields */
@@ -137,6 +141,10 @@
     --color-info:           #5FA4E6;  /* slightly lighter blue for dark contrast */
     --color-info-light:     #0E2942;  /* dark blue background */
 
+    /* Card Border Colors */
+    --color-card-border-indigo:   #7986CB;
+    --color-card-border-grey:     #888888;
+
     --color-bg-primary:     #1A1A18;
     --color-bg-secondary:   #252523;
     --color-bg-elevated:    #2E2E2C;
@@ -176,6 +184,10 @@ html[data-theme="dark"] {
   --color-neutral:        #9B9A96;
   --color-info:           #5FA4E6;
   --color-info-light:     #0E2942;
+
+  /* Card Border Colors */
+  --color-card-border-indigo:   #7986CB;
+  --color-card-border-grey:     #888888;
 
   --color-bg-primary:     #1A1A18;
   --color-bg-secondary:   #252523;
@@ -246,9 +258,32 @@ html[data-theme="light"] {
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
 }
 
-/* Redefine Tier B Spacing tokens for ultra-narrow devices (<418px) */
+/* Redefine Tier B Spacing and Typography tokens for mobile devices (<768px) */
+@media (max-width: 767px) {
+  :root {
+    --text-2xs:     11px;
+    --text-xs-plus: 12px;
+    --text-xs:      12px;
+    --text-sm:      14px;
+    --text-base:    15px;
+    --text-lg:      16px;
+    --text-xl:      18px;
+    --text-2xl:     20px;
+  }
+}
+
+/* Redefine Spacing and Typography tokens for ultra-narrow devices (<418px) */
 @media (max-width: 418px) {
   :root {
+    --text-2xs:     10px;
+    --text-xs-plus: 11px;
+    --text-xs:      11px;
+    --text-sm:      13px;
+    --text-base:    14px;
+    --text-lg:      15px;
+    --text-xl:      16px;
+    --text-2xl:     18px;
+
     --space-2-5: 0.5rem;    /* 8px instead of 10px */
     --space-3:   0.5rem;    /* 8px instead of 12px */
     --space-4:   0.75rem;   /* 12px instead of 16px */
@@ -259,4 +294,21 @@ html[data-theme="light"] {
     --space-12:  2.5rem;    /* 40px instead of 48px */
   }
 }
+
+/* Redefine Spacing and Typography tokens for desktop viewports (>=768px) */
+@media (min-width: 768px) {
+  :root {
+    --text-2xs:     11px;
+    --text-xs-plus: 12px;
+    --text-xs:      13px;
+    --text-sm:      14px;
+    --text-base:    16px;
+    --text-lg:      18px;
+    --text-xl:      20px;
+    --text-2xl:     24px;
+    --text-3xl:     32px;
+    --text-4xl:     40px;
+  }
+}
+
 

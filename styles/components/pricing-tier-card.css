@@ -1,0 +1,536 @@
+/* ==========================================================================
+   GapLuck - Pricing Tier Cards Component CSS
+   Strict BEM, CSS Logical Properties, Token variables, No em-dashes
+   ========================================================================== */
+
+.ag-pricing-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.ag-pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+  align-items: stretch;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .ag-pricing-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
+  }
+}
+
+/* Centered Billing Toggle Switch */
+.ag-billing-toggle-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-6);
+  width: 100%;
+}
+
+.ag-billing-toggle {
+  position: relative;
+  display: inline-flex;
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 100px;
+  padding: 3px;
+  width: auto;
+  align-self: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Sliding green background pill */
+.ag-billing-toggle-bg {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 3px;
+  width: calc(50% - 3px);
+  background-color: var(--color-positive);
+  border-radius: 100px;
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+
+/* When annual is active, slide to the right */
+.ag-billing-toggle-bg--annual {
+  transform: translateX(100%);
+}
+
+/* Logical properties for RTL sliding */
+[dir="rtl"] .ag-billing-toggle-bg {
+  left: auto;
+  right: 3px;
+}
+
+[dir="rtl"] .ag-billing-toggle-bg--annual {
+  transform: translateX(-100%);
+}
+
+.ag-billing-toggle__option {
+  position: relative;
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-base);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-semibold);
+  width: 100px;
+  height: 32px;
+  cursor: pointer;
+  border-radius: 100px;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  outline: none;
+  user-select: none;
+  letter-spacing: 0.01em;
+}
+
+.ag-billing-toggle__option:hover {
+  color: var(--color-text-primary);
+}
+
+.ag-billing-toggle__option--active {
+  color: var(--color-text-inverse) !important;
+}
+
+.ag-badge--save {
+  font-size: var(--text-3xs);
+  padding-block: 2px;
+  padding-inline: var(--space-2);
+  border-radius: var(--radius-full);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.02em;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  display: inline-block;
+  line-height: 1;
+}
+
+/* Inactive state (default) */
+.ag-billing-toggle__option:not(.ag-billing-toggle__option--active) .ag-badge--save {
+  background-color: rgba(45, 191, 142, 0.12);
+  color: var(--color-positive);
+  border: 1px solid rgba(45, 191, 142, 0.25);
+}
+
+/* Active state (when Yearly is active and has white text) */
+.ag-billing-toggle__option--active .ag-badge--save {
+  background-color: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Premium Dark-Theme Glassmorphism Cards */
+.ag-pricing-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-6);
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);
+  transition: transform var(--transition-base), border-color var(--transition-fast), box-shadow var(--transition-base);
+  text-align: start;
+  height: 100%;
+}
+
+@media (min-width: 768px) {
+  .ag-pricing-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  }
+}
+
+/* Featured / Premium Card Highlights & Glow */
+.ag-pricing-card--featured {
+  border-color: rgba(29, 158, 117, 0.3);
+  background: rgba(29, 158, 117, 0.03);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.06), 0 0 20px rgba(29, 158, 117, 0.05);
+}
+
+@media (min-width: 768px) {
+  .ag-pricing-card--featured:hover {
+    transform: translateY(-10px) scale(1.02) !important;
+    border-color: var(--color-positive);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12), 0 0 30px rgba(29, 158, 117, 0.2);
+  }
+}
+
+/* Traveler Card Highlights & Glow */
+.ag-pricing-card--traveler {
+  border-color: rgba(16, 94, 155, 0.3);
+  background: rgba(16, 94, 155, 0.03);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.06), 0 0 20px rgba(16, 94, 155, 0.05);
+}
+
+@media (min-width: 768px) {
+  .ag-pricing-card--traveler:hover {
+    transform: translateY(-10px) scale(1.02) !important;
+    border-color: var(--color-info);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12), 0 0 30px rgba(16, 94, 155, 0.2);
+  }
+}
+
+/* Traveler Card button overrides */
+.ag-pricing-card--traveler .ag-btn--secondary {
+  background-color: var(--color-bg-elevated);
+  color: var(--color-info);
+  border-color: var(--color-info);
+}
+
+.ag-pricing-card--traveler .ag-btn--secondary:hover {
+  background-color: var(--color-info-light);
+  border-color: var(--color-info);
+  color: var(--color-info);
+}
+
+/* Traveler Highlight state for landing page redirect */
+.ag-pricing-card--highlighted {
+  outline: 3px solid var(--color-info);
+  outline-offset: 4px;
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15), 0 0 30px rgba(16, 94, 155, 0.3) !important;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+/* Explicit class-based dark theme overrides for toggle and cards */
+html[data-theme="dark"] .ag-billing-toggle {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+html[data-theme="dark"] .ag-pricing-card {
+  background: rgba(30, 41, 59, 0.45);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+@media (min-width: 768px) {
+  html[data-theme="dark"] .ag-pricing-card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  }
+}
+
+html[data-theme="dark"] .ag-pricing-card--featured {
+  border-color: rgba(45, 191, 142, 0.4);
+  background: rgba(45, 191, 142, 0.03);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3), 0 0 20px rgba(45, 191, 142, 0.08);
+}
+
+@media (min-width: 768px) {
+  html[data-theme="dark"] .ag-pricing-card--featured:hover {
+    border-color: var(--color-positive);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(45, 191, 142, 0.3);
+  }
+}
+
+html[data-theme="dark"] .ag-pricing-card--traveler {
+  border-color: rgba(95, 164, 230, 0.4);
+  background: rgba(95, 164, 230, 0.03);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3), 0 0 20px rgba(95, 164, 230, 0.08);
+}
+
+@media (min-width: 768px) {
+  html[data-theme="dark"] .ag-pricing-card--traveler:hover {
+    border-color: var(--color-info);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(95, 164, 230, 0.3);
+  }
+}
+
+.ag-pricing-card__badge {
+  position: absolute;
+  top: var(--space-3);
+  inset-inline-end: var(--space-3);
+}
+
+.ag-pricing-card__tier-name {
+  font-family: var(--font-family-heading);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.ag-pricing-card__desc {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-normal);
+  margin-bottom: var(--space-4);
+  min-height: 36px;
+}
+
+.ag-pricing-card__price-box {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: var(--space-3);
+  gap: var(--space-1-5);
+}
+
+.ag-pricing-card__price-display {
+  display: flex;
+  flex-direction: column;
+}
+
+.ag-pricing-card__amount {
+  font-family: var(--font-family-heading);
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+  line-height: var(--line-height-tight);
+}
+
+.ag-pricing-card__amount-usd {
+  font-size: var(--text-2xs);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+  opacity: 0.75;
+  margin-top: 1px;
+  line-height: var(--line-height-tight);
+}
+
+.ag-pricing-card__period {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.ag-pricing-card__effective {
+  font-size: var(--text-2xs);
+  color: var(--color-positive);
+  margin-top: calc(-1 * var(--space-1-5));
+  margin-bottom: var(--space-4);
+  font-weight: var(--font-weight-medium);
+}
+
+.ag-pricing-card__features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex-grow: 1;
+}
+
+.ag-pricing-card__feature-item {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  line-height: var(--line-height-normal);
+}
+
+.ag-pricing-card__feature-icon {
+  color: var(--color-positive);
+  flex-shrink: 0;
+  width: 13px;
+  height: 13px;
+}
+
+/* Toned-down Free Card checkmarks and tooltips */
+#ag-pricing-free .ag-pricing-card__feature-icon {
+  color: var(--color-text-secondary);
+}
+
+#ag-pricing-free .ag-tooltip-trigger:hover .ag-pricing-card__tooltip-icon,
+#ag-pricing-free .ag-tooltip-trigger:focus-within .ag-pricing-card__tooltip-icon {
+  color: var(--color-text-secondary);
+}
+
+.ag-pricing-card__feature-item--disabled {
+  color: var(--color-text-disabled);
+}
+
+.ag-pricing-card__feature-item--disabled .ag-pricing-card__feature-icon {
+  color: var(--color-text-disabled);
+}
+
+.ag-pricing-card__cta {
+  width: 100%;
+  justify-content: center;
+  font-weight: var(--font-weight-bold);
+  padding-block: var(--space-2);
+  font-size: var(--text-xs-plus);
+}
+
+.ag-pricing-card__upgrade-note {
+  font-size: var(--text-2xs);
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-2);
+  line-height: var(--line-height-normal);
+}
+
+@media (max-width: 767px) {
+  .ag-pricing-section {
+    padding-inline: 0;
+    padding-block: var(--space-6);
+  }
+  .ag-pricing-grid {
+    display: flex;
+    overflow-x: auto;
+    padding-block: var(--space-6);
+    padding-inline: 0;
+    gap: var(--space-4);
+    scrollbar-width: none;
+    justify-content: flex-start;
+  }
+  .ag-pricing-grid::-webkit-scrollbar {
+    display: none;
+  }
+  .ag-pricing-card {
+    flex: 0 0 72%;
+    height: auto;
+    opacity: 0.68;
+    transform: scale(0.93);
+    transition: opacity 0.32s ease, transform 0.32s ease, border-color var(--transition-fast), box-shadow 0.32s ease;
+  }
+  .ag-pricing-card--active {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.16);
+  }
+  .ag-pricing-card--traveler .ag-pricing-card__tier-name,
+  .ag-pricing-card--featured .ag-pricing-card__tier-name {
+    padding-inline-end: var(--space-10);
+  }
+  .ag-pricing-card__upgrade-note {
+    font-size: var(--text-xs);
+  }
+}
+
+/* Quota Overage Tooltips styling */
+.ag-tooltip-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  cursor: pointer;
+  position: relative;
+}
+
+.ag-pricing-card__tooltip-icon {
+  color: var(--color-text-secondary);
+  opacity: 0.6;
+  transition: opacity var(--transition-fast), color var(--transition-fast);
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.ag-tooltip-trigger:hover .ag-pricing-card__tooltip-icon,
+.ag-tooltip-trigger:focus-within .ag-pricing-card__tooltip-icon {
+  opacity: 1;
+  color: var(--color-positive);
+}
+
+.ag-tooltip-trigger .ag-tooltip__content {
+  bottom: 150%;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  text-align: center;
+  white-space: normal;
+  width: max-content;
+  max-width: 200px;
+}
+
+.ag-tooltip-trigger:hover .ag-tooltip__content,
+.ag-tooltip-trigger:focus-within .ag-tooltip__content {
+  transform: translateX(-50%) translateY(0);
+}
+
+.ag-tooltip-trigger .ag-tooltip__content::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 767px) {
+  .ag-tooltip-trigger .ag-tooltip__content {
+    max-width: 160px;
+    font-size: var(--text-3xs);
+    padding: var(--space-1-5) var(--space-2);
+  }
+}
+
+/* Pricing Dot Pagination (mobile only) */
+.ag-pricing-dots {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .ag-pricing-dots {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2);
+    padding-block: var(--space-3);
+  }
+  .ag-pricing-dots__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--color-border);
+    cursor: pointer;
+    padding: 0;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+  }
+  .ag-pricing-dots__dot--active {
+    background-color: var(--color-positive);
+    transform: scale(1.3);
+  }
+}
+
+/* Hide pricing clones on desktop view to resolve duplicates */
+@media (min-width: 768px) {
+  .ag-pricing-card--clone {
+    display: none !important;
+  }
+}
+
+/* Symmetrical badge group for multiple card badges */
+.ag-pricing-card__badge-group {
+  position: absolute;
+  top: var(--space-3);
+  inset-inline-end: var(--space-3);
+  display: flex;
+  gap: var(--space-2);
+  z-index: 5;
+}
+
+/* Reset individual badge positions when inside a group */
+.ag-pricing-card__badge-group .ag-pricing-card__badge {
+  position: static;
+  top: auto;
+  inset-inline-end: auto;
+}
+
+/* Premium save highlight badge for Option C */
+.ag-badge--save-highlight {
+  background-color: var(--color-positive);
+  color: var(--color-text-inverse) !important;
+  font-weight: var(--font-weight-bold);
+  box-shadow: 0 2px 8px rgba(45, 191, 142, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}

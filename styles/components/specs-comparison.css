@@ -1,0 +1,94 @@
+/**
+ * GapLuck - Centralized Generational Specs and Verdict Card Styles
+ * BEM-compliant, supports trilingual content wrapping and light/dark theme variables.
+ */
+
+.ag-comparison-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background: var(--color-bg-secondary);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-5);
+}
+
+.ag-comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  min-width: 600px;
+}
+
+html[dir="rtl"] .ag-comparison-table {
+  text-align: right;
+}
+
+.ag-comparison-table th,
+.ag-comparison-table td {
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+}
+
+.ag-comparison-table th {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-bold);
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+}
+
+.ag-comparison-table td:first-child,
+.ag-comparison-table th:first-child {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  width: 25%;
+}
+
+.ag-comparison-table td:nth-child(2),
+.ag-comparison-table th:nth-child(2) {
+  background: rgba(45, 191, 142, 0.03);
+  width: 25%;
+}
+
+.ag-comparison-col-highlight {
+  border-inset-inline-start: 2px solid var(--color-positive);
+  border-inset-inline-end: 2px solid var(--color-positive);
+}
+
+.ag-comparison-badge-upgrade {
+  background: var(--color-positive-light);
+  color: var(--color-positive);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-2xs);
+  font-weight: var(--font-weight-semibold);
+  margin-inline-start: var(--space-2);
+}
+
+html[dir="rtl"] .ag-comparison-badge-upgrade {
+  margin-inline-start: 0;
+  margin-inline-end: var(--space-2);
+}
+
+.ag-upgrade-verdict-card {
+  background: linear-gradient(135deg, rgba(45, 191, 142, 0.08) 0%, rgba(16, 94, 155, 0.03) 100%);
+  border: 1px solid var(--color-savings-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  margin: var(--space-5) 0 0 0;
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+}
+
+html[data-theme="light"] .ag-upgrade-verdict-card {
+  background: linear-gradient(135deg, rgba(29, 158, 117, 0.06) 0%, rgba(16, 94, 155, 0.03) 100%);
+}
+
+.ag-upgrade-verdict-card p {
+  max-width: none;
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-normal);
+  margin: 0;
+}

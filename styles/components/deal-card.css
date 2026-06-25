@@ -1,0 +1,74 @@
+/**
+ * GapLuck - Centralized Deal Card Styles
+ * BEM-compliant, supporting trilingual text wrapping and light/dark theme variables.
+ */
+
+.ag-deal-card {
+  flex: 0 0 220px;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.ag-deal-card:hover {
+  transform: translateY(-2px);
+}
+
+.ag-deal-card__image-box {
+  width: 100%;
+  height: 120px;
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-3);
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.ag-deal-card__title {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-1);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ag-deal-card__brand {
+  font-size: var(--text-2xs);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-3);
+}
+
+.ag-deal-card__price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: auto;
+}
+
+.ag-deal-card__price {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--text-md);
+  color: var(--color-text-primary);
+}
+
+.ag-deal-card__savings {
+  color: var(--color-positive);
+  font-size: var(--text-2xs);
+  font-weight: var(--font-weight-bold);
+  white-space: nowrap;
+}

@@ -1,0 +1,129 @@
+/* ==========================================================================
+   GapLuck - Watchlist Alert Popover Component CSS
+   Strict BEM, CSS Logical Properties, Token variables, No em-dashes
+   ========================================================================== */
+
+.ag-watchlist-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Elevate stacking context of the container when open */
+.ag-watchlist-container--open {
+  z-index: calc(var(--z-dropdown) + 10) !important; /* 110 */
+}
+
+/* Elevate stacking context of the parent actions panel when open */
+.ag-product-summary__actions--open {
+  z-index: calc(var(--z-dropdown) + 10) !important; /* 110 */
+}
+
+/* Right-aligned by default to prevent overflow on screen edge (extends left) */
+.ag-watchlist-popover {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  inset-inline-end: 0;
+  inset-inline-start: auto;
+  width: 280px;
+  background-color: var(--color-bg-elevated);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-4);
+  z-index: var(--z-dropdown);
+  display: none;
+  flex-direction: column;
+  gap: var(--space-3);
+  text-align: start;
+}
+
+.ag-watchlist-popover--open {
+  display: flex;
+}
+
+.ag-watchlist-popover__title {
+  font-family: var(--font-family-heading);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--space-2);
+  margin: 0;
+}
+
+.ag-watchlist-popover__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.ag-watchlist-popover__text {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-normal);
+  margin: 0;
+}
+
+.ag-watchlist-popover__input-group {
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding-inline-start: var(--space-3);
+  transition: border-color var(--transition-fast);
+}
+
+.ag-watchlist-popover__input-group:focus-within {
+  border-color: var(--color-positive);
+}
+
+.ag-watchlist-popover__currency {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+  margin-inline-end: var(--space-2);
+}
+
+.ag-watchlist-popover__input {
+  border: none;
+  background: transparent;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-base);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  padding: var(--space-2) var(--space-2) var(--space-2) 0;
+  width: 100%;
+}
+
+.ag-watchlist-popover__input:focus {
+  outline: none;
+}
+
+.ag-watchlist-popover__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.ag-watchlist-popover__btn {
+  width: 100%;
+}
+
+/* Left-aligned boundary fallback modifier (for narrow/RTL bounds, extends right) */
+.ag-watchlist-popover--left {
+  inset-inline-end: auto;
+  inset-inline-start: 0;
+}
+
+/* Mobile responsive scaling safeguard */
+@media (max-width: 480px) {
+  .ag-watchlist-popover {
+    width: calc(100vw - 32px); /* Scale fluidly with screen width minus margins */
+    max-width: 290px;
+    inset-inline-end: -4px; /* Offset alignment slightly on small screens */
+  }
+}

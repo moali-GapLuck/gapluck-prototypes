@@ -4702,9 +4702,9 @@ const CURRENCIES: { code: CurrencyCode; label: string; symbol: string; locale: s
     { code: "TRY", label: "TRY (₺)", symbol: "₺", locale: "tr-TR" },
     { code: "USD", label: "USD ($)", symbol: "$", locale: "en-US" },
     { code: "EUR", label: "EUR (€)", symbol: "€", locale: "de-DE" },
-    { code: "AED", label: "AED (د.إ)", symbol: "AED ", locale: "en-AE" },
+    { code: "AED", label: "AED (د.إ)", symbol: "AED ", locale: "en-AE" }, // Note: New official symbol U+20C3 (⃃) launched in 2025; using "AED " for compatibility
     { code: "GBP", label: "GBP (£)", symbol: "£", locale: "en-GB" },
-    { code: "SAR", label: "SAR (ر.س)", symbol: "SAR ", locale: "ar-SA" },
+    { code: "SAR", label: "SAR (ر.س)", symbol: "SAR ", locale: "ar-SA" }, // Note: New official symbol U+20C1 (⃁) launched in 2025; using "SAR " for compatibility
     { code: "EGP", label: "EGP (E£)", symbol: "E£", locale: "en-EG" },
     { code: "SGD", label: "SGD (S$)", symbol: "S$", locale: "en-SG" },
     { code: "KRW", label: "KRW (₩)", symbol: "₩", locale: "ko-KR" },

@@ -1,0 +1,266 @@
+/* ==========================================================================
+   GapLuck - Traveler & Buyer Steps Component CSS (Landing Page)
+   Strict BEM, CSS Logical Properties, Token variables, No em-dashes
+   High-Density, Ultra-Compact, and Viewport-Optimized Visual Hierarchy
+   ========================================================================== */
+
+.ag-traveler-flows {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .ag-traveler-flows {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+  }
+}
+
+.ag-traveler-flow {
+  background: rgba(18, 22, 28, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 12px 14px; /* Tightened padding for a high-density feel */
+  display: flex;
+  flex-direction: column;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background-color var(--transition-fast);
+  text-align: start;
+}
+
+html[data-theme="light"] .ag-traveler-flow {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.ag-traveler-flow:hover {
+  background: var(--color-bg-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.ag-traveler-flow--traveler:hover {
+  border-color: var(--color-positive);
+  box-shadow: 0 4px 20px rgba(45, 191, 142, 0.06), var(--shadow-md);
+}
+
+.ag-traveler-flow--buyer:hover {
+  border-color: var(--color-card-border-indigo);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.06), var(--shadow-md);
+}
+
+/* Premium Uppercase Main Headers - Larger than content */
+.ag-traveler-flow__title {
+  font-family: var(--font-family-heading);
+  font-size: var(--text-sm); /* Increased size to stand out as a prominent header */
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase; /* Enforces capital letters */
+  letter-spacing: 0.08em; /* Premium header letter-spacing */
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 1.5px solid var(--color-border);
+}
+
+.ag-traveler-flow__title--traveler {
+  color: var(--color-positive);
+  border-bottom-color: var(--color-positive);
+}
+
+.ag-traveler-flow__title--buyer {
+  color: var(--color-card-border-indigo);
+  border-bottom-color: var(--color-card-border-indigo);
+}
+
+/* CSS Counter Initialization */
+.ag-traveler-flow__steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2-5);
+  counter-reset: flow-step;
+}
+
+.ag-traveler-flow__step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.ag-traveler-flow__step-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  min-height: 26px; /* Reduced to align with the compact 26px icon wrap */
+}
+
+.ag-traveler-flow__icon-wrap {
+  width: 26px; /* Compacted from 30px to fit micro-text */
+  height: 26px; /* Compacted from 30px to fit micro-text */
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+  transition:
+    transform var(--transition-fast),
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.ag-traveler-flow__icon-wrap svg {
+  width: 13px; /* Shrunk from 16px */
+  height: 13px; /* Shrunk from 16px */
+  transition: transform var(--transition-fast);
+}
+
+.ag-traveler-flow--traveler .ag-traveler-flow__icon-wrap {
+  color: var(--color-positive);
+  background-color: var(--color-positive-light);
+  border-color: rgba(45, 191, 142, 0.15);
+}
+
+.ag-traveler-flow--buyer .ag-traveler-flow__icon-wrap {
+  color: var(--color-card-border-indigo);
+  background-color: rgba(99, 102, 241, 0.06);
+  border-color: rgba(99, 102, 241, 0.15);
+}
+
+.ag-traveler-flow--traveler:hover .ag-traveler-flow__icon-wrap {
+  transform: scale(1.05);
+  background-color: var(--color-positive);
+  color: var(--color-text-inverse);
+  border-color: var(--color-positive);
+}
+
+.ag-traveler-flow--buyer:hover .ag-traveler-flow__icon-wrap {
+  transform: scale(1.05);
+  background-color: var(--color-card-border-indigo);
+  color: var(--color-text-inverse);
+  border-color: var(--color-card-border-indigo);
+}
+
+/* Reduced Step Detail Title */
+.ag-traveler-flow__step-title {
+  font-size: 11.5px; /* Reduced from 13px to create a clear hierarchy with the main header */
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin: 0;
+  flex-grow: 1;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+}
+
+/* Compact Step Number Badge */
+.ag-traveler-flow__step-number {
+  font-family: var(--font-family-heading);
+  font-size: 9px; /* Reduced from text-2xs */
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  padding: 1px var(--space-1-5);
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+  line-height: 1;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.ag-traveler-flow__step-number::before {
+  counter-increment: flow-step;
+  content: "Step 0" counter(flow-step);
+}
+
+.ag-traveler-flow--traveler:hover .ag-traveler-flow__step-number {
+  background-color: var(--color-positive-light);
+  color: var(--color-positive);
+  border-color: var(--color-savings-border);
+}
+
+.ag-traveler-flow--buyer:hover .ag-traveler-flow__step-number {
+  background-color: rgba(99, 102, 241, 0.12);
+  color: var(--color-card-border-indigo);
+  border-color: rgba(99, 102, 241, 0.2);
+}
+
+/* Reduced Step Detail Description */
+.ag-traveler-flow__step-desc {
+  font-size: 10px; /* Shrunk for maximum layout compaction and clear hierarchy */
+  color: var(--color-text-secondary);
+  line-height: 1.35;
+  margin: 0;
+  padding-inline-start: 34px; /* Perfect baseline alignment: 26px icon + 8px gap */
+}
+
+@media (max-width: 480px) {
+  .ag-traveler-flow {
+    padding: var(--space-3.5);
+  }
+
+  .ag-traveler-flow__step-desc {
+    padding-inline-start: 0;
+    margin-top: var(--space-1);
+  }
+}
+
+.ag-traveler-flow__cta {
+  margin-top: auto;
+  margin-block-start: var(--space-4);
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-bold);
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.ag-traveler-flow__cta--traveler {
+  background-color: var(--color-positive);
+  color: #ffffff;
+}
+
+.ag-traveler-flow__cta--traveler:hover {
+  background-color: #24a87d;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.ag-traveler-flow__cta--buyer {
+  background-color: var(--color-card-border-indigo);
+  color: #ffffff;
+}
+
+.ag-traveler-flow__cta--buyer:hover {
+  background-color: #4f46e5;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.ag-traveler-flow__cta:active {
+  transform: translateY(0);
+}

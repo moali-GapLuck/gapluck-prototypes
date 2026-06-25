@@ -9,45 +9,248 @@
 .ag-footer__container {
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
-  padding-block: var(--space-8);
+  gap: var(--space-8);
+  padding-block: var(--space-10);
 }
 
-@media (min-width: 768px) {
-  .ag-footer__container {
-    flex-direction: row;
-    justify-content: space-between;
+.ag-footer__top-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8) var(--space-3);
+}
+
+@media (max-width: 767px) {
+  .ag-footer__brand-col {
+    grid-column: span 3;
+    text-align: center;
     align-items: center;
+  }
+
+  .ag-footer__brand-col .ag-footer__social-links {
+    justify-content: center;
+  }
+
+  .ag-footer__top-row > :nth-child(2), /* Product Links */
+  .ag-footer__top-row > :nth-child(3), /* Company Links */
+  .ag-footer__top-row > :nth-child(4)  /* Legal Links */ {
+    grid-column: span 1;
+  }
+
+  .ag-footer__top-row > :nth-child(5) { /* App Downloads */
+    grid-column: span 3;
+    text-align: center;
+    align-items: center;
+  }
+
+  .ag-footer__app-btn-list {
+    justify-content: center;
   }
 }
 
-.ag-footer__logo-block {
+@media (min-width: 768px) {
+  .ag-footer__top-row {
+    grid-template-columns: 2.2fr 1fr 1fr 1fr 1.2fr;
+    gap: var(--space-8);
+  }
+}
+
+.ag-footer__brand-col {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--space-3);
 }
 
-.ag-footer__disclaimer {
+.ag-footer__logo-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.ag-footer__logo-text {
+  font-family: var(--font-family-heading);
+  font-weight: 800;
+  font-size: 24px;
+  color: var(--color-text-primary);
+}
+
+.ag-footer__logo-text--highlight {
+  color: var(--color-positive);
+}
+
+.ag-footer__tagline {
   font-size: var(--text-xs);
   color: var(--color-text-secondary);
-  max-width: 600px;
   line-height: var(--line-height-normal);
+  margin: 0;
 }
 
-.ag-footer__links {
+.ag-footer__social-links {
   display: flex;
-  gap: var(--space-5);
-  font-size: var(--text-xs);
-  font-weight: var(--font-weight-medium);
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+}
+
+.ag-footer__social-link {
+  color: var(--color-text-secondary);
+  transition: color var(--transition-fast), transform var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.ag-footer__social-link:hover {
+  color: var(--color-text-primary);
+  transform: translateY(-1px);
+}
+
+.ag-footer__social-link:focus-visible {
+  outline: 2px solid var(--color-positive);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
+}
+
+.ag-footer__links-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.ag-footer__links-heading {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+.ag-footer__links-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2-5);
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .ag-footer__link {
   color: var(--color-text-secondary);
   text-decoration: none;
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-medium);
   transition: color var(--transition-fast);
+  display: inline-block;
 }
 
 .ag-footer__link:hover {
   color: var(--color-text-primary);
   text-decoration: underline;
+}
+
+.ag-footer__link:focus-visible {
+  outline: 2px solid var(--color-positive);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+.ag-footer__divider {
+  border: 0;
+  border-top: 1px solid var(--color-border);
+  margin: 0;
+}
+
+.ag-footer__bottom-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .ag-footer__bottom-row {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-8);
+  }
+}
+
+.ag-footer__disclaimer {
+  font-size: var(--text-2xs);
+  color: var(--color-text-muted);
+  max-width: 700px;
+  line-height: var(--line-height-normal);
+  margin: 0;
+}
+
+.ag-footer__copyright {
+  font-size: var(--text-2xs);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  margin: 0;
+}
+
+/* App Store Download Badges */
+.ag-footer__app-btn-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--space-2-5);
+}
+
+@media (min-width: 768px) {
+  .ag-footer__app-btn-list {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+}
+
+.ag-footer__app-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2-5);
+  background-color: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 6px 12px;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+  max-width: 160px;
+  box-sizing: border-box;
+}
+
+.ag-footer__app-btn:hover {
+  background-color: var(--color-bg-secondary);
+  border-color: var(--color-border-strong);
+  transform: translateY(-1px);
+}
+
+.ag-footer__app-btn:focus-visible {
+  outline: 2px solid var(--color-positive);
+  outline-offset: 2px;
+  border-radius: var(--radius-md);
+}
+
+.ag-footer__app-btn svg {
+  flex-shrink: 0;
+  color: var(--color-text-primary);
+}
+
+.ag-footer__app-btn-text-group {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  text-align: start;
+}
+
+.ag-footer__app-btn-sub {
+  font-size: 8px;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  font-weight: var(--font-weight-medium);
+}
+
+.ag-footer__app-btn-main {
+  font-size: var(--text-2xs);
+  font-weight: var(--font-weight-bold);
 }
